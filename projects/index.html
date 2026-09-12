@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<!--
+  Caso de estudio del proyecto Node & Express Web App.
+-->
+<html lang="es" data-bs-theme="light">
+<head>
+  <!-- =========================================================
+       1. SEO ESPECIFICO DEL PROYECTO
+       ========================================================= -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Node & Express Web App — Francisco Molina</title>
+  <meta
+    name="description"
+    content="Caso de estudio de Node & Express Web App, aplicacion Full Stack de gestion de usuarios, perfiles y pedidos con Express, Sequelize, PostgreSQL y JWT."
+  >
+  <meta name="robots" content="index,follow">
+  <link
+    rel="canonical"
+    href="https://franciscomolinacl.github.io/portfolio/projects"
+  >
+
+  <!-- Open Graph -->
+  <meta
+    property="og:title"
+    content="Node & Express Web App — Full Stack JavaScript"
+  >
+  <meta
+    property="og:description"
+    content="Caso de estudio con API REST, JWT, PostgreSQL, Web y CLI."
+  >
+  <meta property="og:type" content="article">
+  <meta
+    property="og:url"
+    content="https://franciscomolinacl.github.io/portfolio/projects"
+  >
+
+  <meta name="twitter:card" content="summary">
+  <meta
+    name="twitter:title"
+    content="Node & Express Web App — Francisco Molina"
+  >
+  <meta
+    name="twitter:description"
+    content="Caso de estudio Full Stack JavaScript con Express, Sequelize, PostgreSQL y JWT."
+  >
+
+  <!-- Inicializacion temprana del tema -->
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem("portfolio-theme");
+      const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+
+      document.documentElement.setAttribute(
+        "data-bs-theme",
+        savedTheme ?? preferredTheme
+      );
+    })();
+  </script>
+
+  <!--
+    JSON-LD:
+    - WebApplication describe el proyecto.
+    - BreadcrumbList describe la jerarquia Portafolio > Node & Express Web App.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://franciscomolinacl.github.io/portfolio/projects/#app",
+        "name": "Node & Express Web App",
+        "url": "https://franciscomolinacl.github.io/portfolio/projects",
+        "description": "Aplicacion Full Stack para gestion de usuarios, perfiles y pedidos.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "featureList": [
+          "JWT authentication",
+          "User CRUD",
+          "Data filters",
+          "PostgreSQL persistence",
+          "Web client with Handlebars",
+          "CLI client"
+        ],
+        "author": {
+          "@type": "Person",
+          "@id": "https://franciscomolinacl.github.io/portfolio/#person",
+          "name": "Francisco Molina"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Portafolio",
+            "item": "https://franciscomolinacl.github.io/portfolio/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Node & Express Web App",
+            "item": "https://franciscomolinacl.github.io/portfolio/projects"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="shortcut icon" href="../assets/img/logo.webp" type="image/x-icon">
+
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    crossorigin="anonymous"
+  >
+    <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- CSS propio -->
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+  <!-- Accesibilidad: salto directo al contenido -->
+  <a class="skip-link" href="#main-content">
+    Saltar al contenido principal
+  </a>
+
+  <!-- =========================================================
+       2. NAVEGACION DEL CASO DE ESTUDIO
+       ========================================================= -->
+  <header class="sticky-top border-bottom bg-body">
+    <nav class="navbar navbar-expand-lg" aria-label="Navegacion del proyecto">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="../">
+          <img src="../assets/img/logo.webp" class="logo" alt="Francisco Molina">
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#projectNavbar"
+          aria-controls="projectNavbar"
+          aria-expanded="false"
+          aria-label="Abrir navegacion"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="projectNavbar">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="../#projects">Proyectos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../#skills">Capacidades</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../#about">Sobre mi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../#contact">Contacto</a>
+            </li>
+            <li class="nav-item ms-lg-2">
+              <button
+                id="themeToggle"
+                class="btn btn-outline-secondary btn-sm"
+                type="button"
+                aria-pressed="false"
+              >
+                <i id="themeIcon" class="bi bi-moon-stars"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- =========================================================
+       3. CONTENIDO PRINCIPAL DEL PROYECTO
+       ========================================================= -->
+  <main id="main-content">
+
+    <!-- Hero -->
+    <header class="project-hero py-5 py-lg-6">
+      <div class="container">
+        <nav aria-label="Breadcrumb" class="mb-4">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="../">Portafolio</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Node & Express Web App
+            </li>
+          </ol>
+        </nav>
+
+        <p class="eyebrow">Full Stack Project</p>
+        <h1 class="display-3 fw-bold">Node & Express Web App</h1>
+        <p class="lead col-lg-9">
+          Aplicacion web que permite gestionar usuarios, perfiles y pedidos
+          con Node.js, Express y PostgreSQL. Incluye autenticacion JWT,
+          relaciones de datos, filtros y multiples clientes que consumen
+          la misma API.
+        </p>
+
+        <div class="d-flex flex-wrap gap-2 mt-4">
+          <a
+            class="btn btn-accent btn-lg"
+            href="https://github.com/franciscomolinacl/TP-Integrador-JS"
+            target="_blank"
+          >
+            Ver repositorio
+          </a>
+          <a
+            class="btn btn-outline-secondary btn-lg"
+            href="https://tp-integrador-js.onrender.com/"
+            target="_blank"
+          >
+            Ver demo
+          </a>
+          <a class="btn btn-outline-secondary btn-lg" href="../#contact">
+            Contacto
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Resumen de capacidades -->
+    <section class="section-block py-5" aria-labelledby="overview-title">
+      <div class="container">
+        <p class="eyebrow">Resumen</p>
+        <h2 id="overview-title" class="display-6 fw-bold mb-4">
+          Que demuestra este proyecto
+        </h2>
+
+        <div class="row g-3">
+          <div class="col-md-6 col-xl-3">
+            <div class="metric-card h-100 p-4 rounded-4">
+              <p class="small text-body-secondary mb-1">Backend</p>
+              <p class="h5 mb-0">Node.js + Express</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="metric-card h-100 p-4 rounded-4">
+              <p class="small text-body-secondary mb-1">Datos</p>
+              <p class="h5 mb-0">PostgreSQL + Sequelize</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="metric-card h-100 p-4 rounded-4">
+              <p class="small text-body-secondary mb-1">Seguridad</p>
+              <p class="h5 mb-0">scrypt + JWT</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="metric-card h-100 p-4 rounded-4">
+              <p class="small text-body-secondary mb-1">Clientes</p>
+              <p class="h5 mb-0">Web + CLI + Postman</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problema y solucion -->
+    <section class="section-block py-5" aria-labelledby="problem-title">
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-lg-6">
+            <p class="eyebrow">Contexto</p>
+            <h2 id="problem-title" class="h1">Problema</h2>
+            <p>
+              La aplicacion busca centralizar la gestion de usuarios, perfiles
+              y pedidos en una API REST comun que pueda ser consumida por
+              multiples clientes: una interfaz web, una linea de comandos (CLI)
+              y herramientas de prueba como Postman.
+            </p>
+          </div>
+
+          <div class="col-lg-6">
+            <p class="eyebrow">Implementacion</p>
+            <h2 class="h1">Solucion</h2>
+            <p>
+              La aplicacion expone una API REST en Express. Los controllers
+              traducen HTTP hacia services reutilizables; Sequelize representa
+              el modelo relacional y PostgreSQL mantiene la persistencia.
+            </p>
+            <p class="mb-0">
+              La interfaz Web (Handlebars) y el CLI consumen esa misma API,
+              evitando duplicar las reglas de negocio en clientes diferentes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Preview visual -->
+    <section class="section-block py-5" aria-labelledby="preview-title">
+      <div class="container">
+        <p class="eyebrow">Vista representativa</p>
+        <h2 id="preview-title" class="display-6 fw-bold mb-4">
+          Gestion de usuarios
+        </h2>
+
+        <div
+          class="project-visual rounded-4 p-3 p-md-5"
+          role="img"
+          aria-label="Representacion de la interfaz con usuarios"
+        >
+          <div class="mock-window mx-auto">
+            <div class="mock-window-bar">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="mock-window-body">
+              <img src="../assets/img/capturas/cap1.webp" class="caps" alt="Node & Express Web App">
+
+            </div>
+          </div>
+        </div>
+
+        <p class="small text-body-secondary mt-3 mb-0">
+          Captura de pantalla de la gestión de usuarios. Para ver la
+          aplicacion real, visita la
+          <a href="https://tp-integrador-js.onrender.com/" target="_blank">demo en vivo</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Funcionalidades principales -->
+    <section class="section-block py-5" aria-labelledby="features-title">
+      <div class="container">
+        <p class="eyebrow">Funcionalidades</p>
+        <h2 id="features-title" class="display-6 fw-bold mb-4">
+          Capacidades principales
+        </h2>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">Autenticacion</h3>
+                <p class="mb-0 text-body-secondary">
+                  Registro, login, password hashing con scrypt (node:crypto) y proteccion de
+                  endpoints mediante JWT y express-jwt.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">CRUD y filtros</h3>
+                <p class="mb-0 text-body-secondary">
+                  Creacion, lectura, actualizacion y eliminacion de usuarios
+                  con filtros por rol, estado y busqueda por nombre o email.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">Relaciones de datos</h3>
+                <p class="mb-0 text-body-secondary">
+                  Modelo relacional con asociaciones Sequelize: un usuario tiene
+                  un perfil, multiples pedidos y puede asignarse roles.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">Multiples clientes</h3>
+                <p class="mb-0 text-body-secondary">
+                  Web (Handlebars + Bootstrap + Fetch) y CLI reutilizan el
+                  mismo contrato HTTP y las mismas capacidades del backend.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Arquitectura -->
+    <section class="section-block py-5" aria-labelledby="architecture-title">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <p class="eyebrow">Arquitectura</p>
+            <h2 id="architecture-title" class="display-6 fw-bold">
+              Un backend, varios clientes
+            </h2>
+
+            <pre class="architecture-diagram"><code>Web ───────┐
+           │
+CLI ───────┼──→ REST API
+           │        ↓
+Postman ───┘    Middlewares
+                    ↓
+                Controllers
+                    ↓
+                 Services
+                    ↓
+                  Models
+                    ↓
+                Sequelize
+                    ↓
+               PostgreSQL</code></pre>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body p-4">
+                <h3 class="h5">Modelo de datos</h3>
+                <ul class="list-unstyled d-grid gap-2 mb-0">
+                  <li><code>User 1:1 Profile</code></li>
+                  <li><code>User 1:N Order</code></li>
+                  <li><code>User N:M Role</code></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- API REST -->
+    <section class="section-block py-5" aria-labelledby="api-title">
+      <div class="container">
+        <p class="eyebrow">Contrato HTTP</p>
+        <h2 id="api-title" class="display-6 fw-bold mb-4">
+          API REST
+        </h2>
+
+        <div class="table-responsive">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th scope="col">Metodo</th>
+                <th scope="col">Endpoint</th>
+                <th scope="col">Responsabilidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>POST</code></td>
+                <td><code>/api/v1/auth/login</code></td>
+                <td>Autenticar usuario y emitir JWT.</td>
+              </tr>
+              <tr>
+                <td><code>GET</code></td>
+                <td><code>/api/v1/users</code></td>
+                <td>Listar usuarios y aplicar filtros.</td>
+              </tr>
+              <tr>
+                <td><code>POST</code></td>
+                <td><code>/api/v1/users</code></td>
+                <td>Crear un usuario autenticado.</td>
+              </tr>
+              <tr>
+                <td><code>PUT</code></td>
+                <td><code>/api/v1/users/:id</code></td>
+                <td>Actualizar un usuario.</td>
+              </tr>
+              <tr>
+                <td><code>DELETE</code></td>
+                <td><code>/api/v1/users/:id</code></td>
+                <td>Eliminar un usuario.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="mb-0">
+          Ejemplo de filtro: <code>/api/v1/users?role=admin&amp;status=active&amp;search=ana</code>
+        </p>
+      </div>
+    </section>
+
+    <!-- Decisiones tecnicas -->
+    <section class="section-block py-5" aria-labelledby="decisions-title">
+      <div class="container">
+        <p class="eyebrow">Criterio tecnico</p>
+        <h2 id="decisions-title" class="display-6 fw-bold mb-4">
+          Decisiones que vale la pena explicar
+        </h2>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">Una API comun</h3>
+                <p class="mb-0 text-body-secondary">
+                  Web y CLI consumen la misma API para no duplicar el CRUD ni
+                  las reglas de negocio.
+                </p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">Identidad desde el JWT</h3>
+                <p class="mb-0 text-body-secondary">
+                  El <code>userId</code> de operaciones protegidas se obtiene
+                  desde <code>req.auth.sub</code> y no desde un body controlado
+                  por el cliente.
+                </p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">Password hashing</h3>
+                <p class="mb-0 text-body-secondary">
+                  Las contraseas se verifican con scrypt (node:crypto) y no se almacenan
+                  como texto plano.
+                </p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">ORM con Sequelize</h3>
+                <p class="mb-0 text-body-secondary">
+                  El ORM abstrae la base de datos relacional y permite
+                  definir asociaciones, validaciones y consultas de forma
+                  declarativa.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Desafio y aprendizaje -->
+    <section class="section-block py-5" aria-labelledby="challenge-title">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <p class="eyebrow">Desafio</p>
+            <h2 id="challenge-title" class="h1">
+              SSR y estado de autenticacion
+            </h2>
+            <p>
+              Handlebars se renderiza en servidor, mientras el JWT del cliente
+              Web se guarda en <code>localStorage</code>. Por eso el template no
+              puede leer directamente ese estado del navegador durante
+              <code>res.render()</code>.
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <p class="eyebrow">Aprendizaje</p>
+            <h2 class="h1">Separar UX de seguridad</h2>
+            <p>
+              JavaScript cliente actualiza la navegacion segun el estado local,
+              mientras que la seguridad real permanece en la API mediante
+              <code>express-jwt</code>. Ocultar un enlace no sustituye proteger
+              un endpoint.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section-block py-5" aria-labelledby="closing-title">
+      <div class="container">
+        <div class="contact-panel rounded-4 p-4 p-lg-5 text-center">
+          <p class="eyebrow">Codigo y contacto</p>
+          <h2 id="closing-title" class="display-6 fw-bold">
+            Quieres revisar la implementacion?
+          </h2>
+          <p class="lead mx-auto col-lg-8">
+            El repositorio contiene la aplicacion completa. El portafolio
+            resume el problema, la arquitectura y las decisiones que vale la
+            pena discutir en una entrevista tecnica.
+          </p>
+          <div class="d-flex flex-wrap justify-content-center gap-2">
+            <a
+              class="btn btn-accent"
+              href="https://github.com/franciscomolinacl/TP-Integrador-JS"
+              target="_blank"
+            >
+              Ver repositorio
+            </a>
+            <a class="btn btn-outline-secondary" href="../#contact">
+              Contactarme
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-top py-4">
+    <div class="container d-flex flex-column flex-md-row gap-2 justify-content-between">
+      <p class="mb-0 small text-body-secondary">
+        &copy; <span data-current-year></span> Francisco Molina.
+      </p>
+      <a class="small" href="../">Volver al portafolio</a>
+    </div>
+  </footer>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

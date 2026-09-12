@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  sitemap.xml
+  ===========
+  Lista de URLs publicas importantes del portafolio.
+
+  Incluimos:
+  - Home
+  - Caso de estudio Node & Express Web App
+
+  No incluimos:
+  - 404.html, porque es una pagina de error.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <!-- Pagina principal del portafolio. -->
+    <loc>https://franciscomolinacl.github.io/portfolio/</loc>
+  </url>
+
+  <url>
+    <!-- Caso de estudio del proyecto Node & Express Web App. -->
+    <loc>https://franciscomolinacl.github.io/portfolio/projects/</loc>
+  </url>
+</urlset>
