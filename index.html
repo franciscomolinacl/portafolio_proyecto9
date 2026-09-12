@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Francisco Molina | Full Stack JavaScript Developer</title>
+  <meta name="description" content="Portafolio de Francisco Molina, desarrollador Full Stack JavaScript. Proyectos con Node.js, Express, PostgreSQL y APIs REST.">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Francisco Molina — Full Stack JavaScript Developer">
+  <meta property="og:description" content="Portafolio con proyectos Full Stack JavaScript en Node.js, Express y PostgreSQL.">
+  <meta property="og:type" content="website">
+
+  <!-- Tema antes del primer pintado -->
+  <script>
+    (() => {
+      const saved = localStorage.getItem("portfolio-theme");
+      document.documentElement.setAttribute("data-bs-theme", saved ?? "dark");
+    })();
+  </script>
+  <link rel="shortcut icon" href="./assets/img/logo.webp" type="image/x-icon">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+
+<body>
+  <!-- Skip link -->
+  <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+  <!-- Header / Navbar -->
+  <header class="sticky-top border-bottom bg-body">
+    <nav class="navbar navbar-expand-lg" aria-label="Navegación principal">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="./index.html"><img src="./assets/img/logo.webp" class="logo" alt="Francisco Molina"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Abrir navegación">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item"><a class="nav-link" href="#projects">Proyectos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#skills">Capacidades</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">Sobre mí</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+            <li class="nav-item ms-lg-2">
+              <button id="themeToggle" class="btn btn-outline-secondary btn-sm" type="button" aria-label="Cambiar tema">
+                <i id="themeIcon" class="bi bi-moon-stars"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Contenido principal -->
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="hero-section py-5 py-lg-6" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-8">
+            <p class="text-accent fw-semibold mb-2">Hola, soy</p>
+            <h1 id="hero-title" class="display-3 fw-bold text-balance">Francisco Molina</h1>
+            <p class="fs-2 mb-3">Full Stack JavaScript Developer</p>
+            <p class="lead text-body-secondary col-xl-9">
+              Desarrollo aplicaciones web con Node.js, Express, PostgreSQL
+              y JavaScript, con foco en APIs REST, arquitectura clara y
+              experiencias web accesibles.
+            </p>
+            <div class="d-flex flex-wrap gap-2 mt-4">
+              <a href="#contact" class="btn btn-accent btn-lg">Contáctame</a>
+              <a href="#about" class="btn btn-outline-secondary btn-lg">Sobre mí</a>
+            </div>
+            <nav class="d-flex flex-wrap gap-3 mt-4 professional-links" aria-label="Enlaces profesionales">
+              <a href="https://github.com/franciscomolinacl" target="_blank"><i class="bi bi-github"></i> </a>
+              <a href="https://www.linkedin.com/in/francisco-molina-cl/" target="_blank"><i class="bi bi-linkedin"></i> </a>
+              <a href="mailto:contacto@franciscomolina.cl"><i class="bi bi-envelope-fill"></i> </a>
+            </nav>
+          </div>
+          <div class="col-lg-4">
+            <aside class="card border-0 shadow-sm">
+              <div class="card-body p-4">
+                <p class="small text-uppercase text-body-secondary mb-2">Perfil</p>
+                <p class="h5 mb-3">Full Stack JavaScript</p>
+                <ul class="list-unstyled mb-0 d-grid gap-2">
+                  <li>Node.js + Express</li>
+                  <li>PostgreSQL + SQL</li>
+                  <li>REST APIs + JWT</li>
+                  <li>HTML + Bootstrap + JavaScript</li>
+                  <li>Git + GitHub</li>
+                </ul>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section id="projects" class="section-block py-5" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-heading mb-4">
+          <p class="eyebrow">Evidencia técnica</p>
+          <h2 id="projects-title" class="display-6 fw-bold">Proyectos destacados</h2>
+          <p class="text-body-secondary col-lg-8 mb-0">
+            Cada proyecto explica qué problema resuelve y qué decisiones técnicas demuestra.
+          </p>
+        </div>
+
+        <!-- Proyecto 1 -->
+        <article class="card project-card border-0 shadow-sm overflow-hidden mb-4">
+          <div class="row g-0">
+            <div class="col-lg-5">
+              <div class="project-visual h-100 p-4 d-flex align-items-center" role="img" aria-label="Vista representativa de HelpDesk">
+                <div class="mock-window w-100">
+                  <div class="mock-window-bar"><span></span><span></span><span></span></div>
+                  <div class="mock-window-body">
+                      <img src="./assets/img/capturas/cap1.webp" class="caps" alt="Node & Express Web App">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="card-body p-4 p-lg-5">
+                <p class="eyebrow">Full Stack Project</p>
+                <h3 class="card-title h2">Node & Express Web App</h3>
+                <p class="card-text">
+                  Aplicación web que permite gestionar usuarios, perfiles y pedidos con Node.js, Express y PostgreSQL.
+                  Incluye autenticación JWT, relaciones de datos y filtros.
+                </p>
+                <ul class="project-points">
+                  <li>CRUD y filtros de usuarios.</li>
+                  <li>Autenticación con JWT.</li>
+                  <li>PostgreSQL con Sequelize.</li>
+                  <li>Web con Handlebars, Bootstrap y Fetch.</li>
+                  <li>CLI que consume la misma API.</li>
+                </ul>
+                <p class="small text-body-secondary">Node.js · Express · Sequelize · PostgreSQL · Handlebars · Bootstrap</p>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                  <a href="https://github.com/franciscomolinacl/TP-Integrador-JS" target="_blank" class="btn btn-outline-secondary">Ver código</a>
+                  <a href="https://tp-integrador-js.onrender.com/" target="_blank" class="btn btn-accent">Ver demo</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Proyecto 2 -->
+        <article class="card project-card border-0 shadow-sm overflow-hidden mb-4">
+          <div class="row g-0">
+            <div class="col-lg-5">
+              <div class="project-visual project-visual-alt h-100 p-4 d-flex align-items-center" role="img" aria-label="Vista representativa de API REST">
+                <div class="mock-window w-100">
+                  <div class="mock-window-bar"><span></span><span></span><span></span></div>
+                  <div class="mock-window-body">
+                    <img src="./assets/img/capturas/cap2.webp" class="caps" alt="TaskFlow">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="card-body p-4 p-lg-5">
+                <p class="eyebrow">Frontend Project</p>
+                <h3 class="card-title h2">TaskFlow - Gestor de Tareas Pendientes</h3>
+                <p class="card-text">
+                  Aplicación interactiva y nativa para la gestión de tareas, desarrollada bajo 
+                  la arquitectura de separación de responsabilidades: 
+                  control de estado en memoria del sistema y sincronización dinámica con el DOM.
+                </p>
+                <ul class="project-points">
+                  <li>Persistencia de Datos (CRUD Completo).</li>
+                  <li>Consumo de API Asíncrona.</li>
+                  <li>Diccionario de Traducción Local.</li>
+                  <li>Control del Tiempo en Tiempo Real.</li>
+                  <li>JavaScript Moderno (ES6+).</li>
+                  <li>Optimización de Eventos (UX/UI).</li>
+                </ul>
+                <p class="small text-body-secondary">HTML · CSS · JavaScript · Bootstrap · LocalStorage</p>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                  <a href="https://github.com/franciscomolinacl/TaskFlow" target="_blank" class="btn btn-outline-secondary">Ver código</a>
+                  <a href="https://franciscomolinacl.github.io/TaskFlow/" target="_blank" class="btn btn-accent">Ver demo</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Proyecto 3 -->
+        <article class="card project-card border-0 shadow-sm overflow-hidden">
+          <div class="row g-0">
+            <div class="col-lg-5">
+              <div class="project-visual project-visual-alt2 h-100 p-4 d-flex align-items-center" role="img" aria-label="Vista representativa de Weather App">
+                <div class="mock-window w-100">
+                  <div class="mock-window-bar"><span></span><span></span><span></span></div>
+                  <div class="mock-window-body">
+                    <img src="./assets/img/capturas/cap3.webp" class="caps" alt="TaskFlow">     
+                  </div>               
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="card-body p-4 p-lg-5">
+                <p class="eyebrow">Frontend Project</p>
+                <h3 class="card-title h2">AlKe Wallet</h3>
+                <p class="card-text">
+                  Proyecto educativo diseñado para simular el comportamiento de una billetera digital, 
+                  enfocándose en la lógica de registro, inicio de sesión seguro y recuperación de contraseñas.
+                </p>
+                <ul class="project-points">
+                  <li>Pantalla deposito con guardado en LocalStorage.</li>
+                  <li>Pantalla de transferencias con contactos y agenda.</li>
+                  <li>Pantalla de historial de transacciones.</li>
+                  <li>Pantalla de perfil de usuario.</li>
+                  <li>CRUD básico y optimización responsive.</li>
+                </ul>
+                <p class="small text-body-secondary">HTML · CSS · JavaScript · Bootstrap · JQuery · LocalStorage</p>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                  <a href="https://github.com/franciscomolinacl/alke-wallet" target="_blank" class="btn btn-outline-secondary">Ver código</a>
+                  <a href="https://franciscomolinacl.github.io/alke-wallet/" target="_blank" class="btn btn-accent">Ver demo</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Capacidades -->
+    <section id="skills" class="section-block py-5" aria-labelledby="skills-title">
+      <div class="container">
+        <p class="eyebrow">Capacidades</p>
+        <h2 id="skills-title" class="display-6 fw-bold mb-4">Tecnologías respaldadas por evidencia</h2>
+        <div class="row g-3">
+          <div class="col-md-6 col-xl-3">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">Backend</h3>
+                <p class="text-body-secondary mb-0">Node.js, Express, rutas, middlewares, controllers y services.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">Datos</h3>
+                <p class="text-body-secondary mb-0">PostgreSQL, SQL parametrizado, Sequelize y asociaciones.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">Frontend</h3>
+                <p class="text-body-secondary mb-0">HTML semántico, Bootstrap, JavaScript, Fetch y DOM.</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <article class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">Workflow</h3>
+                <p class="text-body-secondary mb-0">Git, GitHub, Postman, testing básico y documentación técnica.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre mí -->
+    <section id="about" class="section-block py-5" aria-labelledby="about-title">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <p class="eyebrow">Sobre mí</p>
+            <h2 id="about-title" class="display-6 fw-bold">Perfil profesional</h2>
+            <p class="lead">
+              Soy desarrollador Full Stack JavaScript Trainee con foco en aplicaciones
+              web construidas con Node.js, Express y PostgreSQL.
+            </p>
+            <p>
+              Durante mi formación he trabajado con APIs REST, autenticación,
+              bases de datos relacionales, interfaces web, CLI y control de
+              versiones. Me interesa construir productos que no solo funcionen,
+              sino que también puedan explicarse, mantenerse y demostrarse.
+            </p>
+            <p class="mb-0">
+              Fuera del desarrollo me interesan la música, las redes informáticas, la seguridad informática, las TI en general y el
+              aprendizaje continuo. 
+            </p>
+          </div>
+          <div class="col-lg-5">
+            <aside class="card h-100 border-0 shadow-sm">
+              <div class="card-body p-4">
+                <h3 class="h5">Trayectoria</h3>
+                <ol class="timeline list-unstyled mb-0">
+                  <li>
+                    <strong>Formación Full Stack JavaScript Trainee</strong>
+                    <span>Fundamentos, frontend, backend, SQL y APIs.</span>
+                  </li>
+                  <li>
+                    <strong>Proyecto Node & Express Web App</strong>
+                    <span>Aplicación integrada con Web, API, CLI y PostgreSQL.</span>
+                  </li>
+                  <li>
+                    <strong>Proyecto TaskFlow - Gestor de Tareas Pendientes</strong>
+                    <span>Aplicación FrontEnd con HTML + CSS + JavaScript + Bootstrap + LocalStorage.</span>
+                  </li>
+                  <li>
+                    <strong>Próximo objetivo</strong>
+                    <span>Incorporarme a una empresa orientada en el desarrollo de aplicaciones
+                      que satisfagan necesidades reales y en la que pueda seguir aprendiendo en las distintas
+                      áreas de la informática.
+                      .</span>
+                  </li>
+                </ol>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contact" class="section-block py-5" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-panel p-4 p-lg-5 rounded-4">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+              <p class="eyebrow">Contacto</p>
+              <h2 id="contact-title" class="display-6 fw-bold">Conversemos</h2>
+              <p class="lead mb-0">
+                Si quieres conversar sobre una oportunidad, proyecto o
+                colaboración, estos son mis canales profesionales.
+              </p>
+            </div>
+            <div class="col-lg-5">
+              <div class="d-grid gap-2">
+                <a class="btn btn-accent" href="mailto:contacto@franciscomolina.cl"><i class="bi bi-envelope-fill"></i> contacto@franciscomolina.cl</a>
+                <a class="btn btn-outline-secondary" href="https://www.linkedin.com/in/francisco-molina-cl/" target="_blank"><i class="bi bi-linkedin"></i> LinkedIn</a>
+                <a class="btn btn-outline-secondary" href="https://github.com/franciscomolinacl" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-top py-4">
+    <div class="container d-flex flex-column flex-md-row gap-2 justify-content-between">
+      <p class="mb-0 small text-body-secondary">
+        © <span data-current-year></span> Francisco Molina.
+      </p>
+      <nav class="d-flex flex-wrap gap-3 small" aria-label="Enlaces del pie">
+        <a href="https://github.com/franciscomolinacl" target="_blank"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/francisco-molina-cl/" target="_blank"><i class="bi bi-linkedin"></i></a>
+        <a href="mailto:contacto@franciscomolina.cl"><i class="bi bi-envelope-fill"></i></a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <!-- JS propios -->
+  <script src="./assets/js/main.js" defer></script>
+</body>
+</html>
