@@ -2,23 +2,26 @@
 <!--
   sitemap.xml
   ===========
-  Lista de URLs publicas importantes del portafolio.
+  Lista de URLs públicas importantes del portafolio.
 
   Incluimos:
   - Home
-  - Caso de estudio Node & Express Web App
+  - caso de estudio HelpDesk
 
   No incluimos:
-  - 404.html, porque es una pagina de error.
+  - 404.html, porque es una página de error;
+  - cv.html, porque en este ejemplo usa noindex.
+
+  Reemplazar TU_USUARIO y "portfolio" según la URL real de GitHub Pages.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <!-- Pagina principal del portafolio. -->
-    <loc>https://franciscomolinacl.github.io/portfolio/</loc>
+    <!-- Página principal del portafolio. -->
+    <loc>https://TU_USUARIO.github.io/portfolio/</loc>
   </url>
 
   <url>
-    <!-- Caso de estudio del proyecto Node & Express Web App. -->
-    <loc>https://franciscomolinacl.github.io/portfolio/projects/</loc>
+    <!-- Caso de estudio público de HelpDesk. -->
+    <loc>https://TU_USUARIO.github.io/portfolio/projects/helpdesk.html</loc>
   </url>
 </urlset>
